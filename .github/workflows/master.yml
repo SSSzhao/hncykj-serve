@@ -25,22 +25,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      # - name: 安装node
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 14.16.0
-
       - name: Install and Build
         run: |
           npm install
           npm run build
 
       # 账号密码验证
-      uses: kostya-ten/ssh-server-deploy@v4
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        port: ${{ secrets.SSH_PORT }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        scp_source: 'dist/'
-        scp_target: ${{ secrets.SSH_TARGET }}
+      - name: Deploy
+        uses: kostya-ten/ssh-server-deploy@v4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          scp_source: 'dist/'
+          scp_target: ${{ secrets.SSH_TARGET }}
