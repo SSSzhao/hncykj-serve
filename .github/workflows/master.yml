@@ -47,7 +47,7 @@ jobs:
         uses: actions/setup-node@master
       - run: npm install # 安装第三方包
       - run: npm run build # 打包
-      - run: tar -zcvf release.tgz dist package.json
+      - run: tar -zcvf release.tar.gz dist package.json
 
       # 第三步：发布 Release
       - name: Create Release # 创建Release， 可以在仓库看到一个个版本
@@ -61,7 +61,7 @@ jobs:
           draft: false # 是否是草稿
           prerelease: false # 是否是预发布
 
-      # 第四步：上传构建结果到 Release（把打包的tgz上传到Release）
+      # 第四步：上传构建结果到 Release（把打包的tar.gz上传到Release）
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@master
@@ -69,9 +69,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.SSH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # 上传地址，通过创建Release获取到的
-          asset_path: ./release.tgz # 要上传文件
-          asset_name: release.tgz # 上传后的文件名
-          asset_content_type: application/x-tgz
+          asset_path: ./release.tar.gz # 要上传文件
+          asset_name: release.tar.gz # 上传后的文件名
+          asset_content_type: application/x-tar
 
       # 第五步：部署到服务器
       - name: Deploy
@@ -84,7 +84,7 @@ jobs:
           script:
             | # 执行命令（运行到服务器）cd：要确保服务器有这个目录； wget：下载上一步的release到服务器； tar：解压； 安装依赖；启动服务
             cd /home/hncykj/serve
-            wget https://github.com/SSSzhao/hncykj-serve/releases/latest/download/release.tgz -O release.tgz
-            tar zxvf release.tgz
+            wget https://github.com/SSSzhao/hncykj-serve/releases/latest/download/release.tar.gz -O release.tar.gz
+            tar zxvf release.tar.gz
             npm install
         # pm2 reload pm2.config.json
