@@ -18,6 +18,6 @@ async function bootstrap() {
 
   // 全局路由前缀
   // app.setGlobalPrefix('v1')
-  await app.listen(8000)
+  await app.listen(8001)
 }
 bootstrap()

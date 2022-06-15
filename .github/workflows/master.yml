@@ -47,7 +47,7 @@ jobs:
         uses: actions/setup-node@master
       - run: npm install # 安装第三方包
       - run: npm run build # 打包
-      - run: tar -zcvf release.tar.gz dist package.json
+      - run: tar -zcvf release.tar.gz dist package.json ecosystem.config.js
 
       # 第三步：发布 Release
       - name: Create Release # 创建Release， 可以在仓库看到一个个版本
@@ -87,4 +87,4 @@ jobs:
             wget https://github.com/SSSzhao/hncykj-serve/releases/latest/download/release.tar.gz -O release.tar.gz
             tar zxvf release.tar.gz
             npm install
-            pm2 reload hncykj-serve
+            pm2 reload hncykj-serve || pm2 start
