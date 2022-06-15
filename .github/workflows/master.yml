@@ -86,7 +86,5 @@ jobs:
             cd /home/hncykj/serve
             wget https://github.com/SSSzhao/hncykj-serve/releases/latest/download/release.tar.gz -O release.tar.gz
             tar zxvf release.tar.gz
-          # mv package.json ./dist
-          # cd dist
             npm install
             pm2 reload hncykj-serve
