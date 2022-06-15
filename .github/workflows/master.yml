@@ -48,7 +48,7 @@ jobs:
       - run: tar -zcvf release.tgz dist package.json
 
       # 第三步：发布 Release
-      - name: Create Release # 创建Release，可以在仓库看到一个个版本
+      - name: Create Release # 创建Release， 可以在仓库看到一个个版本
         id: create_release
         uses: actions/create-release@master
         env:
