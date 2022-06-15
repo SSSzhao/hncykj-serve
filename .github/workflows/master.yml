@@ -87,4 +87,4 @@ jobs:
             wget https://github.com/SSSzhao/hncykj-serve/releases/latest/download/release.tar.gz -O release.tar.gz
             tar zxvf release.tar.gz
             npm install
-            pm2 reload hncykj-serve || pm2 start
+            pm2 reload hncykj-serve
