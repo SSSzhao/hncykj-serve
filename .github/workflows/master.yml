@@ -27,23 +27,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      # - name: Install and Build
-      #   run: |
-      #     npm install
-      #     npm run build
-
-      # # 账号密码验证
-      # - name: Deploy
-      #   uses: kostya-ten/ssh-server-deploy@v4
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     password: ${{ secrets.SSH_PASSWORD }}
-      #     scp_source: 'dist/'
-      #     scp_target: ${{ secrets.SSH_TARGET }}
       # 第二步：打包构建
-      - name: Build
+      - name: Install and Build
         uses: actions/setup-node@master
       - run: npm install # 安装第三方包
       - run: npm run build # 打包
